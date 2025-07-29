@@ -2,55 +2,111 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Happy Bestfriend Day</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Happy Bestfriend Day! </h1>
-  <p>
-    Terima kasih sudah selalu ada untukku.  
-    Kamu adalah bintang di malamku,  
-    cahaya yang membuat hari-hariku lebih indah.  
-    Semoga kita selalu bersahabat selamanya. 
-  </p>
+  <div class="overlay"></div>
 
-  <!-- Musik menenangkan -->
-  <audio autoplay loop>
+  <!-- Splash Screen -->
+  <div id="startScreen">
+    <h2>🌌 Happy Bestfriend Day 🌌</h2>
+    <p>Tap untuk memulai permainan</p>
+    <button id="startBtn">💖 Mulai 💖</button>
+  </div>
+
+  <!-- Game + Pesan -->
+  <div id="gameContent" style="display:none;">
+    <div class="hud">
+      <span>Score: <span id="score">0</span></span>
+    </div>
+
+    <h1>Happy Bestfriend Day! 🌌</h1>
+    <p class="message"></p>
+    <button id="musicBtn">🔊 Pause Music</button>
+  </div>
+
+  <!-- Musik dan efek suara -->
+  <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/10/05/audio_0e4f06b376.mp3?filename=peaceful-piano-118106.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="catchSound">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/20/audio_8a8edc5d8a.mp3?filename=click-pop-2-189906.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // Efek hati mengambang
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.innerHTML = '';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = window.innerHeight + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }, 800);
+    const startBtn = document.getElementById('startBtn');
+    const startScreen = document.getElementById('startScreen');
+    const gameContent = document.getElementById('gameContent');
+    const music = document.getElementById('bgMusic');
+    const catchSound = document.getElementById('catchSound');
+    const btn = document.getElementById('musicBtn');
+    const scoreEl = document.getElementById('score');
+    let score = 0;
 
-    // Membuat bintang
-    for (let i = 0; i < 80; i++) {
-      const star = document.createElement('div');
-      star.classList.add('stars');
-      star.style.top = Math.random() * 100 + '%';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.animationDuration = (Math.random() * 2 + 1) + 's';
-      document.body.appendChild(star);
+    // Teks pesan
+    const text = `Selamat Hari Persahabatan!\n
+Terima kasih selalu ada untukku.\n
+Kamu adalah bintang di malamku.\n
+Semoga persahabatan ini selamanya. 💖`;
+
+    const messageEl = document.querySelector('.message');
+    let idx = 0;
+
+    function typeEffect() {
+      if (idx < text.length) {
+        messageEl.innerHTML += text[idx] === "\n" ? "<br>" : text[idx];
+        idx++;
+        setTimeout(typeEffect, 60);
+      }
     }
 
-    // Membuat partikel kunang-kunang
-    for (let i = 0; i < 20; i++) {
-      const firefly = document.createElement('div');
-      firefly.classList.add('firefly');
-      firefly.style.left = Math.random() * 100 + 'vw';
-      firefly.style.top = Math.random() * 100 + 'vh';
-      firefly.style.animationDuration = (Math.random() * 10 + 5) + 's';
-      document.body.appendChild(firefly);
+    // Mulai game
+    startBtn.addEventListener('click', () => {
+      startScreen.style.display = 'none';
+      gameContent.style.display = 'flex';
+
+      music.play().catch(()=>{});
+      btn.textContent = '🔊 Pause Music';
+
+      typeEffect();
+      spawnHearts();
+    });
+
+    // Tombol musik
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.textContent = '🔊 Pause Music';
+      } else {
+        music.pause();
+        btn.textContent = '🔇 Play Music';
+      }
+    });
+
+    // ---- Mini-game: Tangkap Hati ----
+    function spawnHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('falling-heart');
+        heart.innerHTML = '💖';
+        heart.style.left = Math.random() * 90 + 'vw';
+        document.body.appendChild(heart);
+
+        // Klik untuk mendapatkan score
+        heart.addEventListener('click', () => {
+          score++;
+          scoreEl.textContent = score;
+          catchSound.currentTime = 0;
+          catchSound.play();
+          heart.remove();
+        });
+
+        // Hapus jika jatuh
+        setTimeout(() => heart.remove(), 5000);
+      }, 1500);
     }
   </script>
 
