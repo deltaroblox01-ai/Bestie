@@ -15,7 +15,7 @@ body {
   padding: 20px;
 }
 
-/* Overlay berputar */
+/* Overlay background berputar */
 .overlay {
   position: absolute;
   width: 200%;
@@ -38,7 +38,7 @@ body {
   height: 100%;
   background: rgba(0,0,0,0.85);
   text-align: center;
-  z-index: 2;
+  z-index: 5;
 }
 
 #startScreen h2 {
@@ -59,14 +59,54 @@ body {
   box-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
-/* HUD Score */
+/* Game layout */
+#gameContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 10px;
+}
+
 .hud {
-  position: fixed;
+  position: absolute;
   top: 15px;
   left: 15px;
   font-size: 1.2rem;
   z-index: 3;
   text-shadow: 0 0 10px black;
+}
+
+.game-message {
+  margin-top: 80px;
+  text-align: center;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px #00ffff; }
+  50% { text-shadow: 0 0 30px #ff00ff; }
+}
+
+.message {
+  margin-top: 15px;
+  max-width: 90%;
+  text-align: center;
+  font-size: 1.1rem;
+  white-space: pre-wrap;
 }
 
 /* Hati jatuh */
@@ -76,36 +116,11 @@ body {
   font-size: 2rem;
   animation: fall 5s linear forwards;
   cursor: pointer;
-  z-index: 1;
+  z-index: 0;
 }
 
 @keyframes fall {
   to { transform: translateY(110vh); }
-}
-
-h1 {
-  font-size: 2rem;
-  text-align: center;
-  background: linear-gradient(90deg, #00ffff, #ff00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glow 3s ease-in-out infinite;
-  margin-top: 50px;
-  z-index: 1;
-}
-
-@keyframes glow {
-  0%, 100% { text-shadow: 0 0 10px #00ffff; }
-  50% { text-shadow: 0 0 30px #ff00ff; }
-}
-
-.message {
-  margin-top: 20px;
-  max-width: 90%;
-  text-align: center;
-  font-size: 1.1rem;
-  white-space: pre-wrap;
-  z-index: 1;
 }
 
 /* Tombol musik */
