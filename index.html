@@ -1,114 +1,474 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Happy Bestfriend Day</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Bestfriend Day</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Exo 2', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0c1d, #1a1a2e);
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Efek latar belakang futuristik */
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(18, 18, 40, 0.5) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(18, 18, 40, 0.5) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+
+        .neon-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+            top: 20%;
+            left: 10%;
+            z-index: -1;
+            filter: blur(15px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .neon-circle:nth-child(2) {
+            background: radial-gradient(circle, rgba(255, 0, 212, 0.15) 0%, transparent 70%);
+            top: 60%;
+            left: 80%;
+            width: 200px;
+            height: 200px;
+            animation-delay: -2s;
+        }
+
+        .neon-circle:nth-child(3) {
+            background: radial-gradient(circle, rgba(0, 255, 149, 0.15) 0%, transparent 70%);
+            top: 80%;
+            left: 30%;
+            width: 250px;
+            height: 250px;
+            animation-delay: -4s;
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 2rem;
+            text-align: center;
+            z-index: 10;
+            background: rgba(10, 10, 25, 0.7);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.2),
+                        0 0 80px rgba(255, 0, 212, 0.1),
+                        inset 0 0 20px rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d9ff, #ff00d4, #00ff95, #00d9ff);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 22px;
+            animation: border-animation 20s linear infinite;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 10px #00d9ff, 
+                         0 0 20px #00d9ff,
+                         0 0 40px #00d9ff;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        .typing-container {
+            min-height: 180px;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 15px;
+            background: rgba(0, 10, 20, 0.4);
+            position: relative;
+        }
+
+        .typing-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00d9ff, #ff00d4);
+            box-shadow: 0 0 10px #00d9ff;
+        }
+
+        .typing-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #e0f7ff;
+            text-shadow: 0 0 5px rgba(0, 217, 255, 0.7);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 2rem;
+            background: #00d9ff;
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 5px #00d9ff;
+        }
+
+        .game-ui {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .game-button {
+            background: rgba(0, 20, 40, 0.6);
+            border: 2px solid #00d9ff;
+            color: #e0f7ff;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-button:hover {
+            background: rgba(0, 217, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.4);
+        }
+
+        .game-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .game-button:hover::before {
+            left: 100%;
+        }
+
+        .music-player {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(0, 10, 20, 0.4);
+            border: 1px solid rgba(255, 0, 212, 0.3);
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .music-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 20, 40, 0.6);
+            border: 2px solid #ff00d4;
+            color: #e0f7ff;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 0, 212, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 0, 212, 0.5);
+        }
+
+        .volume-slider {
+            width: 150px;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff00d4;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 212, 0.7);
+        }
+
+        .song-title {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #ffa6f6;
+            text-shadow: 0 0 5px rgba(255, 0, 212, 0.5);
+        }
+
+        .floating-icons {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .floating-icons:nth-child(1) { top: 10%; left: 5%; color: #00d9ff; animation-delay: 0s; }
+        .floating-icons:nth-child(2) { top: 20%; right: 15%; color: #ff00d4; animation-delay: -1s; }
+        .floating-icons:nth-child(3) { bottom: 30%; left: 20%; color: #00ff95; animation-delay: -2s; }
+        .floating-icons:nth-child(4) { bottom: 15%; right: 10%; color: #00d9ff; animation-delay: -3s; }
+        .floating-icons:nth-child(5) { top: 40%; left: 25%; color: #ff00d4; animation-delay: -4s; }
+
+        @keyframes glow-pulse {
+            0%, 100% { text-shadow: 0 0 10px #00d9ff, 0 0 20px #00d9ff, 0 0 40px #00d9ff; }
+            50% { text-shadow: 0 0 15px #00d9ff, 0 0 30px #00d9ff, 0 0 60px #00d9ff; }
+        }
+
+        @keyframes border-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+            50% { transform: translateY(0) translateX(20px) rotate(0deg); }
+            75% { transform: translateY(-15px) translateX(-10px) rotate(-5deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .typing-text { font-size: 1.4rem; }
+            .game-ui { flex-direction: column; align-items: center; }
+            .container { margin: 1rem; padding: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-
-  <div class="overlay"></div>
-
-  <!-- Splash Screen -->
-  <div id="startScreen">
-    <h2>🌌 Happy Bestfriend Day 🌌</h2>
-    <p>Tap untuk memulai permainan</p>
-    <button id="startBtn">💖 Mulai 💖</button>
-  </div>
-
-  <!-- Game + Pesan -->
-  <div id="gameContent" style="display:none;">
-    <div class="hud">
-      <span>Score: <span id="score">0</span></span>
+    <!-- Efek latar belakang -->
+    <div class="grid-lines"></div>
+    <div class="neon-circle"></div>
+    <div class="neon-circle"></div>
+    <div class="neon-circle"></div>
+    
+    <!-- Ikon melayang -->
+    <div class="floating-icons"><i class="fas fa-heart"></i></div>
+    <div class="floating-icons"><i class="fas fa-star"></i></div>
+    <div class="floating-icons"><i class="fas fa-gem"></i></div>
+    <div class="floating-icons"><i class="fas fa-music"></i></div>
+    <div class="floating-icons"><i class="fas fa-gamepad"></i></div>
+    
+    <div class="container">
+        <h1>Happy Bestfriend Day</h1>
+        
+        <div class="typing-container">
+            <div class="typing-text" id="typed-text"></div>
+        </div>
+        
+        <div class="game-ui">
+            <button class="game-button" onclick="sendHug()"><i class="fas fa-hands-helping"></i> Kirim Pelukan</button>
+            <button class="game-button" onclick="createMemory()"><i class="fas fa-memory"></i> Buat Kenangan</button>
+            <button class="game-button" onclick="shareLove()"><i class="fas fa-share-alt"></i> Bagikan Cinta</button>
+        </div>
+        
+        <div class="music-player">
+            <div class="music-controls">
+                <button class="music-btn" id="playBtn"><i class="fas fa-play"></i></button>
+                <button class="music-btn" id="pauseBtn"><i class="fas fa-pause"></i></button>
+                <input type="range" min="0" max="1" step="0.01" value="0.7" class="volume-slider" id="volumeSlider">
+            </div>
+            <div class="song-title">Lofi Friendship - Relaxing Bestfriend Memories</div>
+        </div>
     </div>
+    
+    <audio id="backgroundMusic" loop>
+        <source src="https://assets.codepen.io/1468070/relaxing-piano.mp3" type="audio/mpeg">
+    </audio>
 
-    <h1>Happy Bestfriend Day! 🌌</h1>
-    <p class="message"></p>
-    <button id="musicBtn">🔊 Pause Music</button>
-  </div>
-
-  <!-- Musik dan efek suara -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/05/audio_0e4f06b376.mp3?filename=peaceful-piano-118106.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="catchSound">
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/20/audio_8a8edc5d8a.mp3?filename=click-pop-2-189906.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    const startBtn = document.getElementById('startBtn');
-    const startScreen = document.getElementById('startScreen');
-    const gameContent = document.getElementById('gameContent');
-    const music = document.getElementById('bgMusic');
-    const catchSound = document.getElementById('catchSound');
-    const btn = document.getElementById('musicBtn');
-    const scoreEl = document.getElementById('score');
-    let score = 0;
-
-    // Teks pesan
-    const text = `Selamat Hari Persahabatan!\n
-Terima kasih selalu ada untukku.\n
-Kamu adalah bintang di malamku.\n
-Semoga persahabatan ini selamanya. 💖`;
-
-    const messageEl = document.querySelector('.message');
-    let idx = 0;
-
-    function typeEffect() {
-      if (idx < text.length) {
-        messageEl.innerHTML += text[idx] === "\n" ? "<br>" : text[idx];
-        idx++;
-        setTimeout(typeEffect, 60);
-      }
-    }
-
-    // Mulai game
-    startBtn.addEventListener('click', () => {
-      startScreen.style.display = 'none';
-      gameContent.style.display = 'flex';
-
-      music.play().catch(()=>{});
-      btn.textContent = '🔊 Pause Music';
-
-      typeEffect();
-      spawnHearts();
-    });
-
-    // Tombol musik
-    btn.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-        btn.textContent = '🔊 Pause Music';
-      } else {
-        music.pause();
-        btn.textContent = '🔇 Play Music';
-      }
-    });
-
-    // ---- Mini-game: Tangkap Hati ----
-    function spawnHearts() {
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.classList.add('falling-heart');
-        heart.innerHTML = '💖';
-        heart.style.left = Math.random() * 90 + 'vw';
-        document.body.appendChild(heart);
-
-        // Klik untuk mendapatkan score
-        heart.addEventListener('click', () => {
-          score++;
-          scoreEl.textContent = score;
-          catchSound.currentTime = 0;
-          catchSound.play();
-          heart.remove();
+    <script>
+        // Konten untuk efek ketik
+        const messages = [
+            "Untuk sahabat terbaikku...",
+            "Hari ini adalah hari spesial untuk kita.",
+            "Terima kasih sudah selalu ada dalam setiap momen hidupku.",
+            "Bersamamu, setiap hari adalah petualangan yang menyenangkan.",
+            "Kita telah melalui banyak hal bersama - tawa, air mata, dan semua di antaranya.",
+            "Kau adalah keluarga yang kupilih sendiri.",
+            "Di dunia yang penuh dengan perubahan, persahabatan kita tetap konstan.",
+            "Aku bersyukur memiliki sahabat sepertimu dalam hidupku.",
+            "Selamat Hari Sahabat! Terima kasih untuk semuanya.",
+            "Aku menghargaimu lebih dari yang bisa kukatakan..."
+        ];
+        
+        // Inisialisasi variabel
+        let currentMessage = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        // Elemen teks
+        const typedTextElement = document.getElementById('typed-text');
+        
+        // Fungsi untuk efek mengetik
+        function typeText() {
+            const currentText = messages[currentMessage];
+            
+            if (!isDeleting && charIndex < currentText.length) {
+                // Mengetik teks
+                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100; // Kecepatan mengetik normal
+            } else if (isDeleting && charIndex > 0) {
+                // Menghapus teks
+                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50; // Lebih cepat saat menghapus
+            }
+            
+            // Mengubah status jika selesai mengetik atau menghapus
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typingSpeed = 1500; // Jeda sebelum menghapus
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentMessage = (currentMessage + 1) % messages.length;
+                typingSpeed = 500; // Jeda sebelum mengetik pesan baru
+            }
+            
+            setTimeout(typeText, typingSpeed);
+        }
+        
+        // Kontrol musik
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        
+        playBtn.addEventListener('click', () => {
+            backgroundMusic.play();
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
         });
-
-        // Hapus jika jatuh
-        setTimeout(() => heart.remove(), 5000);
-      }, 1500);
-    }
-  </script>
-
+        
+        pauseBtn.addEventListener('click', () => {
+            backgroundMusic.pause();
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        });
+        
+        volumeSlider.addEventListener('input', () => {
+            backgroundMusic.volume = volumeSlider.value;
+        });
+        
+        // Fungsi tombol game-like
+        function sendHug() {
+            alert("💖 Pelukan virtual telah dikirim ke sahabatmu! 💖");
+            createParticleEffect();
+        }
+        
+        function createMemory() {
+            alert("🌟 Kenangan baru telah dibuat! 🌟");
+        }
+        
+        function shareLove() {
+            alert("✨ Cinta dan apresiasi telah dibagikan! ✨");
+        }
+        
+        // Efek partikel untuk tombol
+        function createParticleEffect() {
+            const particles = 30;
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'floating-icons';
+                particle.innerHTML = '<i class="fas fa-heart"></i>';
+                particle.style.position = 'absolute';
+                particle.style.top = '50%';
+                particle.style.left = '50%';
+                particle.style.color = getRandomColor();
+                particle.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                particle.style.animation = 'float 3s ease-in-out forwards';
+                
+                container.appendChild(particle);
+                
+                // Hapus setelah animasi selesai
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
+            }
+        }
+        
+        function getRandomColor() {
+            const colors = ['#00d9ff', '#ff00d4', '#00ff95', '#ffcc00', '#ff6b6b'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Mulai animasi setelah halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeText, 1000);
+            
+            // Putar musik otomatis dengan volume rendah
+            backgroundMusic.volume = 0.5;
+            backgroundMusic.play().catch(e => console.log("Autoplay prevented: ", e));
+        });
+    </script>
 </body>
 </html>
