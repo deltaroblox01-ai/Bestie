@@ -5,37 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Bestfriend Day | Futuristic Celebration</title>
     <style>
-        /* VARIABEL WARNA FUTURISTIK */
-        :root {
-            --primary: #7b68ee;
-            --secondary: #48d1cc;
-            --accent: #ff6ec7;
-            --background: #0f0c29;
-            --text: #e0f7fa;
-            --glow: 0 0 15px rgba(123, 104, 238, 0.7), 0 0 30px rgba(75, 209, 204, 0.5);
-        }
-        
-        /* RESET & BASE STYLING */
+        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--background);
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: var(--text);
+        }
+
+        /* Global Styles */
+        :root {
+            --primary: #8a2be2;
+            --secondary: #00f5d4;
+            --accent: #ff00ff;
+            --dark: #0a0a1a;
+            --light: #f0f8ff;
+            --glow: 0 0 15px var(--accent), 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a, #1a1a3a);
+            color: var(--light);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            line-height: 1.6;
+            padding: 20px;
         }
-        
-        /* PARTIKEL BACKGROUND */
+
+        /* Background Effects */
         .particles {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -43,267 +42,303 @@
             z-index: -1;
             overflow: hidden;
         }
-        
+
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: var(--accent);
+            background: var(--secondary);
             opacity: 0.7;
             animation: float 15s infinite linear;
         }
-        
+
         @keyframes float {
             0% {
-                transform: translateY(0) translateX(0);
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
                 opacity: 0.7;
             }
-            50% {
-                opacity: 0.3;
+            90% {
+                opacity: 0.7;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
                 opacity: 0;
             }
         }
-        
-        /* LAYOUT UTAMA */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            position: relative;
-            z-index: 10;
-        }
-        
-        /* HEADER */
+
+        /* Header Styles */
         header {
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            border-radius: 20px;
-            background: rgba(16, 18, 27, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(123, 104, 238, 0.3);
-            box-shadow: var(--glow);
-            width: 100%;
-            max-width: 800px;
-            animation: fadeIn 1.5s ease-out;
-        }
-        
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(123, 104, 238, 0.3);
-            letter-spacing: 2px;
+            padding: 40px 20px;
+            margin-bottom: 40px;
             position: relative;
         }
-        
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 2px;
-            box-shadow: var(--glow);
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: var(--glow);
+            letter-spacing: 4px;
         }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-top: 1rem;
-            opacity: 0.9;
-        }
-        
-        /* KONTEN UTAMA */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 3rem;
-        }
-        
-        /* TYPING ANIMATION */
+
+        /* Typing Effect Container */
         .typing-container {
-            background: rgba(16, 18, 27, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 120px;
+            padding: 20px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
             border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            width: 100%;
-            border: 1px solid rgba(123, 104, 238, 0.2);
+            background: rgba(10, 10, 26, 0.7);
             box-shadow: var(--glow);
-            min-height: 200px;
             position: relative;
             overflow: hidden;
         }
-        
+
         .typing-container::before {
-            content: '';
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--secondary);
+            box-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: -100%;
+            }
+            70%, 100% {
+                top: 100%;
+            }
+        }
+
+        .typing-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.8rem;
+            background-color: var(--secondary);
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(20, 20, 40, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), var(--glow);
+            border-color: var(--accent);
+        }
+
+        .card::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            box-shadow: var(--glow);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
-        
-        #typing-text {
-            font-size: 1.4rem;
-            line-height: 1.8;
-            min-height: 200px;
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
         }
-        
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.4rem;
-            background: var(--accent);
-            margin-left: 5px;
-            animation: blink 1s infinite;
-            vertical-align: middle;
+
+        .card h2 i {
+            margin-right: 10px;
+            color: var(--accent);
         }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+
+        .card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #e0e0ff;
         }
-        
-        /* MUSIC PLAYER */
-        .music-player {
-            background: rgba(16, 18, 27, 0.7);
+
+        /* Game Elements */
+        .game-container {
+            background: rgba(10, 10, 26, 0.8);
+            border: 2px solid var(--primary);
             border-radius: 15px;
-            padding: 1.5rem;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 2rem;
-            border: 1px solid rgba(123, 104, 238, 0.2);
-            box-shadow: var(--glow);
+            padding: 25px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
+
+        .game-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
-        .play-btn {
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .memory-card {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #1a1a3a, #2a2a5a);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 2rem;
             cursor: pointer;
-            box-shadow: var(--glow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+            color: transparent;
         }
-        
-        .play-btn:hover {
+
+        .memory-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(123, 104, 238, 0.9);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
         }
-        
-        .play-btn i {
-            color: white;
-            font-size: 1.8rem;
-            margin-left: 4px;
-        }
-        
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .volume-slider {
-            width: 100px;
-            -webkit-appearance: none;
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(123, 104, 238, 0.3);
-            outline: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--accent);
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 110, 199, 0.7);
-        }
-        
-        .song-info {
-            margin-top: 1rem;
-            text-align: center;
+
+        .memory-card.revealed {
+            background: linear-gradient(135deg, #2a2a5a, #3a3a7a);
             color: var(--secondary);
-            font-style: italic;
         }
-        
-        /* INTERAKTIF GAME-LIKE ELEMENT */
-        .friendship-meter {
-            width: 100%;
-            max-width: 500px;
-            background: rgba(16, 18, 27, 0.7);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-top: 2rem;
-            text-align: center;
-            border: 1px solid rgba(123, 104, 238, 0.2);
-            box-shadow: var(--glow);
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
-        
-        .meter-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+
+        .btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
         }
-        
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 0, 255, 0.6);
+        }
+
+        /* Friendship Meter */
         .meter-container {
-            width: 100%;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.1);
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(20, 20, 40, 0.6);
             border-radius: 15px;
-            margin: 1rem 0;
+            border: 1px solid var(--primary);
+        }
+
+        .meter-title {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .meter {
+            height: 40px;
+            background: #1a1a3a;
+            border-radius: 20px;
             overflow: hidden;
+            border: 2px solid var(--primary);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
             position: relative;
         }
-        
+
         .meter-fill {
             height: 100%;
-            width: 100%;
+            width: 97%;
             background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 15px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meter-fill::after {
+            content: "";
             position: absolute;
-            left: 0;
             top: 0;
-            animation: fillMeter 2s forwards;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            animation: shine 2s infinite;
         }
-        
-        @keyframes fillMeter {
-            from { width: 0; }
-            to { width: 100%; }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
         }
-        
+
         .meter-value {
             position: absolute;
             top: 50%;
@@ -311,106 +346,142 @@
             transform: translate(-50%, -50%);
             font-weight: bold;
             color: white;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
         }
-        
-        .message {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            color: var(--secondary);
-        }
-        
-        /* FOOTER */
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
-            width: 100%;
-            margin-top: auto;
-            color: var(--secondary);
+            padding: 40px 20px 20px;
+            margin-top: 50px;
             font-size: 1.1rem;
-            opacity: 0.8;
+            color: #a0a0ff;
+            position: relative;
         }
-        
-        /* ANIMASI */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out forwards;
+
+        .hearts {
+            color: var(--accent);
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            margin: 10px 0;
+            text-shadow: var(--glow);
         }
-        
-        /* RESPONSIVE */
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
+            .logo {
+                font-size: 2.5rem;
             }
             
-            .subtitle {
+            .typing-text {
+                font-size: 1.4rem;
+            }
+            
+            .card h2 {
+                font-size: 1.5rem;
+            }
+            
+            .memory-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .typing-text {
                 font-size: 1.2rem;
             }
             
-            .typing-container, .music-player, .friendship-meter {
-                padding: 1.5rem;
+            .memory-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            #typing-text {
-                font-size: 1.2rem;
+            .card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background particles -->
+    <!-- Floating Particles Background -->
     <div class="particles" id="particles"></div>
-    
-    <div class="container">
-        <header>
-            <h1>Happy Bestfriend Day</h1>
-            <p class="subtitle">Merayakan Ikatan Tak Tergantikan dalam Gaya Futuristik</p>
-        </header>
-        
-        <main class="main-content">
-            <div class="typing-container fade-in">
-                <div id="typing-text"></div>
-            </div>
+
+    <header>
+        <div class="logo">HAPPY BESTFRIEND DAY</div>
+        <div class="typing-container">
+            <div class="typing-text" id="typing-text"></div>
+            <div class="cursor" id="cursor"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2><i>💖</i> Mengapa Kamu Spesial</h2>
+            <p>Sahabatku, kamu adalah bintang yang menerangi kegelapanku. Dalam setiap tawa dan air mata, kamu selalu ada. Tak terhitung kenangan indah yang kita ciptakan bersama.</p>
+            <p>Kamu mengajariku arti persahabatan sejati - saling mendukung tanpa syarat, menerima kekurangan, dan merayakan kemenangan bersama.</p>
+        </div>
+
+        <div class="card">
+            <h2><i>🎮</i> Memori Bersama</h2>
+            <p>Ingatkah ketika kita pertama kali bertemu? Atau saat kita melakukan petualangan gila itu? Setiap momen bersamamu adalah cerita berharga dalam hidupku.</p>
             
-            <div class="music-player fade-in">
-                <h2>Lagu Persahabatan</h2>
-                <div class="player-controls">
-                    <button class="play-btn" id="play-btn">
-                        <i>▶</i>
-                    </button>
-                    <div class="volume-control">
-                        <span>🔈</span>
-                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
-                        <span>🔊</span>
-                    </div>
+            <div class="game-container">
+                <div class="game-title">Game Kenangan</div>
+                <div class="memory-grid">
+                    <div class="memory-card" data-value="1">🌟</div>
+                    <div class="memory-card" data-value="2">🎉</div>
+                    <div class="memory-card" data-value="3">😂</div>
+                    <div class="memory-card" data-value="4">🎁</div>
+                    <div class="memory-card" data-value="3">😂</div>
+                    <div class="memory-card" data-value="4">🎁</div>
+                    <div class="memory-card" data-value="1">🌟</div>
+                    <div class="memory-card" data-value="2">🎉</div>
                 </div>
-                <p class="song-info">Memutar: "A Thousand Years" - Christina Perri</p>
-                <audio id="bg-music" loop>
-                    <!-- Musik akan dimuat melalui JavaScript -->
-                </audio>
+                <div class="game-controls">
+                    <button class="btn" id="start-btn">Mulai Game</button>
+                    <button class="btn" id="reset-btn">Ulangi</button>
+                </div>
             </div>
+        </div>
+
+        <div class="card">
+            <h2><i>🚀</i> Masa Depan Kita</h2>
+            <p>Di tahun-tahun mendatang, aku membayangkan kita masih tertawa bersama, saling mendukung mimpi masing-masing, dan menciptakan lebih banyak kenangan indah.</p>
+            <p>Apapun yang terjadi, ketahuilah bahwa kamu selalu punya tempat di hatiku. Persahabatan kita adalah harta yang tak ternilai.</p>
             
-            <div class="friendship-meter fade-in">
-                <h2 class="meter-title">Meter Kekuatan Persahabatan</h2>
-                <div class="meter-container">
+            <div class="meter-container">
+                <div class="meter-title">Kekuatan Persahabatan Kita</div>
+                <div class="meter">
                     <div class="meter-fill"></div>
-                    <div class="meter-value">100%</div>
+                    <div class="meter-value">97% TAK TERKALAHKAN!</div>
                 </div>
-                <p class="message">Persahabatan kita tak terukur! 💖</p>
             </div>
-        </main>
-        
-        <footer>
-            <p>Dibuat dengan ♥ untuk sahabat terbaikku | Happy Bestfriend Day 2024</p>
-        </footer>
-    </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Dibuat dengan penuh cinta untuk sahabat terbaikku</p>
+        <div class="hearts">💖💖💖</div>
+        <p>Selamat Hari Sahabat Sedunia! Terima kasih sudah menjadi bagian hidupku.</p>
+        <p>© 2023 - Persahabatan Abadi</p>
+    </footer>
 
     <script>
-        // Membuat partikel untuk background
+        // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
@@ -419,121 +490,170 @@
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // Ukuran dan posisi acak
-                const size = Math.random() * 10 + 5;
-                const posX = Math.random() * 100;
-                const delay = Math.random() * 15;
-                
+                // Random size between 2px and 8px
+                const size = Math.random() * 6 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.bottom = `-${size}px`;
-                particle.style.animationDelay = `${delay}s`;
                 
-                // Warna acak dari palet
-                const colors = ['#7b68ee', '#48d1cc', '#ff6ec7', '#9370db', '#20b2aa'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.backgroundColor = color;
+                // Random position
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Random animation delay and duration
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
                 
                 particlesContainer.appendChild(particle);
             }
         }
         
-        // Animasi teks ketik
+        // Typing animation
         function typeText() {
             const textElement = document.getElementById('typing-text');
-            const messages = [
+            const cursor = document.getElementById('cursor');
+            const texts = [
                 "Untuk sahabat terbaikku...",
-                "Di hari spesial ini, aku ingin mengucapkan terima kasih.",
-                "Terima kasih telah menjadi pendengar yang baik, pendukung setia, dan partner dalam setiap petualangan.",
-                "Kita telah melewati begitu banyak momen bersama - tawa, air mata, kesuksesan, dan kegagalan.",
-                "Persahabatan kita seperti bintang di langit malam, selalu bersinar terang bahkan di kegelapan.",
-                "Di era futuristik ini, di mana teknologi terus berkembang, satu hal yang tetap konstan: ikatan kita.",
-                "Aku bersyukur memiliki sahabat sepertimu. Tak ada AI atau teknologi canggih yang bisa menggantikan kehangatan persahabatan kita.",
-                "Selamat Hari Sahabat! Mari kita lanjutkan petualangan ini bersama-sama...",
-                "Aku menghargaimu lebih dari kata-kata bisa ungkapkan. 💫"
+                "Terima kasih sudah selalu ada...",
+                "Selamat Hari Sahabat! 💖",
+                "Kamu berarti segalanya bagiku...",
+                "Persahabatan kita abadi! 🚀"
             ];
-            
-            let messageIndex = 0;
+            let textIndex = 0;
             let charIndex = 0;
             let isDeleting = false;
-            let typingSpeed = 50;
-            let deleteSpeed = 30;
-            let pauseBetween = 1500;
+            let typingSpeed = 100;
             
             function type() {
-                const currentMessage = messages[messageIndex];
+                const currentText = texts[textIndex];
                 
-                if (!isDeleting && charIndex < currentMessage.length) {
-                    // Mengetik
-                    textElement.innerHTML = currentMessage.substring(0, charIndex + 1) + '<span class="cursor"></span>';
-                    charIndex++;
-                    setTimeout(type, typingSpeed);
-                } else if (isDeleting && charIndex > 0) {
-                    // Menghapus
-                    textElement.innerHTML = currentMessage.substring(0, charIndex - 1) + '<span class="cursor"></span>';
+                if (isDeleting) {
+                    // Deleting characters
+                    textElement.textContent = currentText.substring(0, charIndex - 1);
                     charIndex--;
-                    setTimeout(type, deleteSpeed);
-                } else if (!isDeleting && charIndex === currentMessage.length) {
-                    // Jeda setelah selesai mengetik
-                    isDeleting = true;
-                    setTimeout(type, pauseBetween);
-                } else if (isDeleting && charIndex === 0) {
-                    // Pindah ke pesan berikutnya
-                    isDeleting = false;
-                    messageIndex = (messageIndex + 1) % messages.length;
-                    setTimeout(type, typingSpeed);
+                    typingSpeed = 50;
+                } else {
+                    // Typing characters
+                    textElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = charIndex % 3 === 0 ? 250 : 100; // Random speed variation
                 }
+                
+                // Change text when done typing/deleting
+                if (!isDeleting && charIndex === currentText.length) {
+                    isDeleting = true;
+                    typingSpeed = 1500; // Pause at end
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+                
+                setTimeout(type, typingSpeed);
             }
             
-            // Memulai animasi
             type();
         }
         
-        // Kontrol musik
-        function setupMusicPlayer() {
-            const playBtn = document.getElementById('play-btn');
-            const volumeSlider = document.getElementById('volume-slider');
-            const audio = document.getElementById('bg-music');
+        // Memory game functionality
+        function setupMemoryGame() {
+            const cards = document.querySelectorAll('.memory-card');
+            const startBtn = document.getElementById('start-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            let hasFlippedCard = false;
+            let lockBoard = false;
+            let firstCard, secondCard;
+            let gameStarted = false;
             
-            // Gunakan musik dari sumber eksternal (YouTube untuk demo)
-            audio.src = "https://youtu.be/QgaTQ5-XfMM?si=ajKaGLqDAWsVO8eF";
-            
-            playBtn.addEventListener('click', () => {
-                if (audio.paused) {
-                    audio.play();
-                    playBtn.innerHTML = '<i>⏸</i>';
-                } else {
-                    audio.pause();
-                    playBtn.innerHTML = '<i>▶</i>';
+            function flipCard() {
+                if (lockBoard || !gameStarted) return;
+                if (this === firstCard) return;
+                
+                this.classList.add('revealed');
+                this.textContent = this.dataset.value === '1' ? '🌟' : 
+                                  this.dataset.value === '2' ? '🎉' : 
+                                  this.dataset.value === '3' ? '😂' : '🎁';
+                
+                if (!hasFlippedCard) {
+                    // First card flipped
+                    hasFlippedCard = true;
+                    firstCard = this;
+                    return;
                 }
-            });
+                
+                // Second card flipped
+                secondCard = this;
+                checkForMatch();
+            }
             
-            volumeSlider.addEventListener('input', () => {
-                audio.volume = volumeSlider.value;
-            });
+            function checkForMatch() {
+                const isMatch = firstCard.dataset.value === secondCard.dataset.value;
+                
+                if (isMatch) {
+                    disableCards();
+                } else {
+                    unflipCards();
+                }
+            }
+            
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+                
+                resetBoard();
+            }
+            
+            function unflipCards() {
+                lockBoard = true;
+                
+                setTimeout(() => {
+                    firstCard.classList.remove('revealed');
+                    secondCard.classList.remove('revealed');
+                    firstCard.textContent = '';
+                    secondCard.textContent = '';
+                    
+                    resetBoard();
+                }, 1500);
+            }
+            
+            function resetBoard() {
+                [hasFlippedCard, lockBoard] = [false, false];
+                [firstCard, secondCard] = [null, null];
+            }
+            
+            function startGame() {
+                gameStarted = true;
+                cards.forEach(card => {
+                    card.classList.remove('revealed');
+                    card.textContent = '';
+                    card.addEventListener('click', flipCard);
+                });
+                
+                startBtn.textContent = "Game Dimulai!";
+            }
+            
+            function resetGame() {
+                gameStarted = false;
+                cards.forEach(card => {
+                    card.classList.remove('revealed');
+                    card.textContent = '';
+                    card.removeEventListener('click', flipCard);
+                });
+                
+                startBtn.textContent = "Mulai Game";
+                resetBoard();
+            }
+            
+            startBtn.addEventListener('click', startGame);
+            resetBtn.addEventListener('click', resetGame);
         }
         
-        // Inisialisasi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize everything
+        window.onload = function() {
             createParticles();
             typeText();
-            setupMusicPlayer();
-            
-            // Animasi elemen saat masuk viewport
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        });
+            setupMemoryGame();
+        };
     </script>
 </body>
 </html>
