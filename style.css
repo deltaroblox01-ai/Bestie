@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Bintang */
+.stars {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Kunang-kunang */
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffff99, transparent 60%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffff99, 0 0 20px #ffff99;
+  animation: fly linear infinite alternate;
+}
+
+@keyframes fly {
+  0%   { transform: translate(0, 0); opacity: 0.6; }
+  25%  { transform: translate(30px, -50px); opacity: 1; }
+  50%  { transform: translate(-50px, 20px); opacity: 0.8; }
+  75%  { transform: translate(40px, 40px); opacity: 1; }
+  100% { transform: translate(-30px, -40px); opacity: 0.6; }
+}
+
+h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px #00ffff; }
+  50% { text-shadow: 0 0 30px #ff00ff; }
+}
+
+p {
+  margin-top: 20px;
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: fadeIn 3s ease forwards 1s;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.heart {
+  position: absolute;
+  font-size: 2rem;
+  animation: float 5s infinite;
+  z-index: 1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
+}
