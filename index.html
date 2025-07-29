@@ -3,471 +3,536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Bestfriend Day</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Happy Bestfriend Day | Futuristic Celebration</title>
     <style>
+        /* VARIABEL WARNA FUTURISTIK */
+        :root {
+            --primary: #7b68ee;
+            --secondary: #48d1cc;
+            --accent: #ff6ec7;
+            --background: #0f0c29;
+            --text: #e0f7fa;
+            --glow: 0 0 15px rgba(123, 104, 238, 0.7), 0 0 30px rgba(75, 209, 204, 0.5);
+        }
+        
+        /* RESET & BASE STYLING */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Rajdhani', 'Exo 2', sans-serif;
         }
-
+        
         body {
-            background: linear-gradient(135deg, #0c0c1d, #1a1a2e);
-            color: #e0e0ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--text);
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            line-height: 1.6;
         }
-
-        /* Efek latar belakang futuristik */
-        .grid-lines {
+        
+        /* PARTIKEL BACKGROUND */
+        .particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(90deg, rgba(18, 18, 40, 0.5) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(18, 18, 40, 0.5) 1px, transparent 1px);
-            background-size: 30px 30px;
             z-index: -1;
+            overflow: hidden;
         }
-
-        .neon-circle {
+        
+        .particle {
             position: absolute;
-            width: 300px;
-            height: 300px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
-            top: 20%;
-            left: 10%;
-            z-index: -1;
-            filter: blur(15px);
-            animation: float 8s ease-in-out infinite;
+            background: var(--accent);
+            opacity: 0.7;
+            animation: float 15s infinite linear;
         }
-
-        .neon-circle:nth-child(2) {
-            background: radial-gradient(circle, rgba(255, 0, 212, 0.15) 0%, transparent 70%);
-            top: 60%;
-            left: 80%;
-            width: 200px;
-            height: 200px;
-            animation-delay: -2s;
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
-
-        .neon-circle:nth-child(3) {
-            background: radial-gradient(circle, rgba(0, 255, 149, 0.15) 0%, transparent 70%);
-            top: 80%;
-            left: 30%;
-            width: 250px;
-            height: 250px;
-            animation-delay: -4s;
-        }
-
+        
+        /* LAYOUT UTAMA */
         .container {
-            max-width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
             z-index: 10;
-            background: rgba(10, 10, 25, 0.7);
+        }
+        
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
             border-radius: 20px;
+            background: rgba(16, 18, 27, 0.6);
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 40px rgba(0, 217, 255, 0.2),
-                        0 0 80px rgba(255, 0, 212, 0.1),
-                        inset 0 0 20px rgba(0, 217, 255, 0.1);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 1px solid rgba(123, 104, 238, 0.3);
+            box-shadow: var(--glow);
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(123, 104, 238, 0.3);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+            box-shadow: var(--glow);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* KONTEN UTAMA */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+        
+        /* TYPING ANIMATION */
+        .typing-container {
+            background: rgba(16, 18, 27, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            border: 1px solid rgba(123, 104, 238, 0.2);
+            box-shadow: var(--glow);
+            min-height: 200px;
             position: relative;
             overflow: hidden;
         }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #00d9ff, #ff00d4, #00ff95, #00d9ff);
-            background-size: 400%;
-            z-index: -1;
-            border-radius: 22px;
-            animation: border-animation 20s linear infinite;
-        }
-
-        h1 {
-            font-size: 4.5rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #fff;
-            text-shadow: 0 0 10px #00d9ff, 
-                         0 0 20px #00d9ff,
-                         0 0 40px #00d9ff;
-            animation: glow-pulse 3s ease-in-out infinite;
-        }
-
-        .typing-container {
-            min-height: 180px;
-            margin: 2rem 0;
-            padding: 1.5rem;
-            border: 1px solid rgba(0, 217, 255, 0.3);
-            border-radius: 15px;
-            background: rgba(0, 10, 20, 0.4);
-            position: relative;
-        }
-
+        
         .typing-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #00d9ff, #ff00d4);
-            box-shadow: 0 0 10px #00d9ff;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            box-shadow: var(--glow);
         }
-
-        .typing-text {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            text-align: center;
-            color: #e0f7ff;
-            text-shadow: 0 0 5px rgba(0, 217, 255, 0.7);
+        
+        #typing-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            min-height: 200px;
         }
-
+        
         .cursor {
             display: inline-block;
             width: 8px;
-            height: 2rem;
-            background: #00d9ff;
+            height: 1.4rem;
+            background: var(--accent);
             margin-left: 5px;
-            vertical-align: middle;
             animation: blink 1s infinite;
-            box-shadow: 0 0 5px #00d9ff;
+            vertical-align: middle;
         }
-
-        .game-ui {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .game-button {
-            background: rgba(0, 20, 40, 0.6);
-            border: 2px solid #00d9ff;
-            color: #e0f7ff;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-button:hover {
-            background: rgba(0, 217, 255, 0.2);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.4);
-        }
-
-        .game-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
-            transition: 0.5s;
-        }
-
-        .game-button:hover::before {
-            left: 100%;
-        }
-
-        .music-player {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            border-radius: 15px;
-            background: rgba(0, 10, 20, 0.4);
-            border: 1px solid rgba(255, 0, 212, 0.3);
-        }
-
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .music-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(0, 20, 40, 0.6);
-            border: 2px solid #ff00d4;
-            color: #e0f7ff;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .music-btn:hover {
-            background: rgba(255, 0, 212, 0.2);
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 0, 212, 0.5);
-        }
-
-        .volume-slider {
-            width: 150px;
-            -webkit-appearance: none;
-            height: 8px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #ff00d4;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 0, 212, 0.7);
-        }
-
-        .song-title {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            color: #ffa6f6;
-            text-shadow: 0 0 5px rgba(255, 0, 212, 0.5);
-        }
-
-        .floating-icons {
-            position: absolute;
-            font-size: 1.5rem;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.7;
-            text-shadow: 0 0 10px currentColor;
-        }
-
-        .floating-icons:nth-child(1) { top: 10%; left: 5%; color: #00d9ff; animation-delay: 0s; }
-        .floating-icons:nth-child(2) { top: 20%; right: 15%; color: #ff00d4; animation-delay: -1s; }
-        .floating-icons:nth-child(3) { bottom: 30%; left: 20%; color: #00ff95; animation-delay: -2s; }
-        .floating-icons:nth-child(4) { bottom: 15%; right: 10%; color: #00d9ff; animation-delay: -3s; }
-        .floating-icons:nth-child(5) { top: 40%; left: 25%; color: #ff00d4; animation-delay: -4s; }
-
-        @keyframes glow-pulse {
-            0%, 100% { text-shadow: 0 0 10px #00d9ff, 0 0 20px #00d9ff, 0 0 40px #00d9ff; }
-            50% { text-shadow: 0 0 15px #00d9ff, 0 0 30px #00d9ff, 0 0 60px #00d9ff; }
-        }
-
-        @keyframes border-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-            25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
-            50% { transform: translateY(0) translateX(20px) rotate(0deg); }
-            75% { transform: translateY(-15px) translateX(-10px) rotate(-5deg); }
+        
+        /* MUSIC PLAYER */
+        .music-player {
+            background: rgba(16, 18, 27, 0.7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            border: 1px solid rgba(123, 104, 238, 0.2);
+            box-shadow: var(--glow);
         }
-
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .play-btn {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--glow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(123, 104, 238, 0.9);
+        }
+        
+        .play-btn i {
+            color: white;
+            font-size: 1.8rem;
+            margin-left: 4px;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .volume-slider {
+            width: 100px;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(123, 104, 238, 0.3);
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 110, 199, 0.7);
+        }
+        
+        .song-info {
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        /* INTERAKTIF GAME-LIKE ELEMENT */
+        .friendship-meter {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(16, 18, 27, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            border: 1px solid rgba(123, 104, 238, 0.2);
+            box-shadow: var(--glow);
+        }
+        
+        .meter-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .meter-container {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 15px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: fillMeter 2s forwards;
+        }
+        
+        @keyframes fillMeter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .meter-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+            margin-top: auto;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        /* ANIMASI */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .typing-text { font-size: 1.4rem; }
-            .game-ui { flex-direction: column; align-items: center; }
-            .container { margin: 1rem; padding: 1.5rem; }
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .typing-container, .music-player, .friendship-meter {
+                padding: 1.5rem;
+            }
+            
+            #typing-text {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Efek latar belakang -->
-    <div class="grid-lines"></div>
-    <div class="neon-circle"></div>
-    <div class="neon-circle"></div>
-    <div class="neon-circle"></div>
-    
-    <!-- Ikon melayang -->
-    <div class="floating-icons"><i class="fas fa-heart"></i></div>
-    <div class="floating-icons"><i class="fas fa-star"></i></div>
-    <div class="floating-icons"><i class="fas fa-gem"></i></div>
-    <div class="floating-icons"><i class="fas fa-music"></i></div>
-    <div class="floating-icons"><i class="fas fa-gamepad"></i></div>
+    <!-- Background particles -->
+    <div class="particles" id="particles"></div>
     
     <div class="container">
-        <h1>Happy Bestfriend Day</h1>
+        <header>
+            <h1>Happy Bestfriend Day</h1>
+            <p class="subtitle">Merayakan Ikatan Tak Tergantikan dalam Gaya Futuristik</p>
+        </header>
         
-        <div class="typing-container">
-            <div class="typing-text" id="typed-text"></div>
-        </div>
-        
-        <div class="game-ui">
-            <button class="game-button" onclick="sendHug()"><i class="fas fa-hands-helping"></i> Kirim Pelukan</button>
-            <button class="game-button" onclick="createMemory()"><i class="fas fa-memory"></i> Buat Kenangan</button>
-            <button class="game-button" onclick="shareLove()"><i class="fas fa-share-alt"></i> Bagikan Cinta</button>
-        </div>
-        
-        <div class="music-player">
-            <div class="music-controls">
-                <button class="music-btn" id="playBtn"><i class="fas fa-play"></i></button>
-                <button class="music-btn" id="pauseBtn"><i class="fas fa-pause"></i></button>
-                <input type="range" min="0" max="1" step="0.01" value="0.7" class="volume-slider" id="volumeSlider">
+        <main class="main-content">
+            <div class="typing-container fade-in">
+                <div id="typing-text"></div>
             </div>
-            <div class="song-title">Lofi Friendship - Relaxing Bestfriend Memories</div>
-        </div>
+            
+            <div class="music-player fade-in">
+                <h2>Lagu Persahabatan</h2>
+                <div class="player-controls">
+                    <button class="play-btn" id="play-btn">
+                        <i>▶</i>
+                    </button>
+                    <div class="volume-control">
+                        <span>🔈</span>
+                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                        <span>🔊</span>
+                    </div>
+                </div>
+                <p class="song-info">Memutar: "A Thousand Years" - Christina Perri</p>
+                <audio id="bg-music" loop>
+                    <!-- Musik akan dimuat melalui JavaScript -->
+                </audio>
+            </div>
+            
+            <div class="friendship-meter fade-in">
+                <h2 class="meter-title">Meter Kekuatan Persahabatan</h2>
+                <div class="meter-container">
+                    <div class="meter-fill"></div>
+                    <div class="meter-value">100%</div>
+                </div>
+                <p class="message">Persahabatan kita tak terukur! 💖</p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Dibuat dengan ♥ untuk sahabat terbaikku | Happy Bestfriend Day 2024</p>
+        </footer>
     </div>
-    
-    <audio id="backgroundMusic" loop>
-        <source src="https://assets.codepen.io/1468070/relaxing-piano.mp3" type="audio/mpeg">
-    </audio>
 
     <script>
-        // Konten untuk efek ketik
-        const messages = [
-            "Untuk sahabat terbaikku...",
-            "Hari ini adalah hari spesial untuk kita.",
-            "Terima kasih sudah selalu ada dalam setiap momen hidupku.",
-            "Bersamamu, setiap hari adalah petualangan yang menyenangkan.",
-            "Kita telah melalui banyak hal bersama - tawa, air mata, dan semua di antaranya.",
-            "Kau adalah keluarga yang kupilih sendiri.",
-            "Di dunia yang penuh dengan perubahan, persahabatan kita tetap konstan.",
-            "Aku bersyukur memiliki sahabat sepertimu dalam hidupku.",
-            "Selamat Hari Sahabat! Terima kasih untuk semuanya.",
-            "Aku menghargaimu lebih dari yang bisa kukatakan..."
-        ];
+        // Membuat partikel untuk background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Ukuran dan posisi acak
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.bottom = `-${size}px`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Warna acak dari palet
+                const colors = ['#7b68ee', '#48d1cc', '#ff6ec7', '#9370db', '#20b2aa'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
         
-        // Inisialisasi variabel
-        let currentMessage = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
-        
-        // Elemen teks
-        const typedTextElement = document.getElementById('typed-text');
-        
-        // Fungsi untuk efek mengetik
+        // Animasi teks ketik
         function typeText() {
-            const currentText = messages[currentMessage];
+            const textElement = document.getElementById('typing-text');
+            const messages = [
+                "Untuk sahabat terbaikku...",
+                "Di hari spesial ini, aku ingin mengucapkan terima kasih.",
+                "Terima kasih telah menjadi pendengar yang baik, pendukung setia, dan partner dalam setiap petualangan.",
+                "Kita telah melewati begitu banyak momen bersama - tawa, air mata, kesuksesan, dan kegagalan.",
+                "Persahabatan kita seperti bintang di langit malam, selalu bersinar terang bahkan di kegelapan.",
+                "Di era futuristik ini, di mana teknologi terus berkembang, satu hal yang tetap konstan: ikatan kita.",
+                "Aku bersyukur memiliki sahabat sepertimu. Tak ada AI atau teknologi canggih yang bisa menggantikan kehangatan persahabatan kita.",
+                "Selamat Hari Sahabat! Mari kita lanjutkan petualangan ini bersama-sama...",
+                "Aku menghargaimu lebih dari kata-kata bisa ungkapkan. 💫"
+            ];
             
-            if (!isDeleting && charIndex < currentText.length) {
-                // Mengetik teks
-                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 100; // Kecepatan mengetik normal
-            } else if (isDeleting && charIndex > 0) {
-                // Menghapus teks
-                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 50; // Lebih cepat saat menghapus
+            let messageIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 50;
+            let deleteSpeed = 30;
+            let pauseBetween = 1500;
+            
+            function type() {
+                const currentMessage = messages[messageIndex];
+                
+                if (!isDeleting && charIndex < currentMessage.length) {
+                    // Mengetik
+                    textElement.innerHTML = currentMessage.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                    charIndex++;
+                    setTimeout(type, typingSpeed);
+                } else if (isDeleting && charIndex > 0) {
+                    // Menghapus
+                    textElement.innerHTML = currentMessage.substring(0, charIndex - 1) + '<span class="cursor"></span>';
+                    charIndex--;
+                    setTimeout(type, deleteSpeed);
+                } else if (!isDeleting && charIndex === currentMessage.length) {
+                    // Jeda setelah selesai mengetik
+                    isDeleting = true;
+                    setTimeout(type, pauseBetween);
+                } else if (isDeleting && charIndex === 0) {
+                    // Pindah ke pesan berikutnya
+                    isDeleting = false;
+                    messageIndex = (messageIndex + 1) % messages.length;
+                    setTimeout(type, typingSpeed);
+                }
             }
             
-            // Mengubah status jika selesai mengetik atau menghapus
-            if (!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                typingSpeed = 1500; // Jeda sebelum menghapus
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                currentMessage = (currentMessage + 1) % messages.length;
-                typingSpeed = 500; // Jeda sebelum mengetik pesan baru
-            }
-            
-            setTimeout(typeText, typingSpeed);
+            // Memulai animasi
+            type();
         }
         
         // Kontrol musik
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        const playBtn = document.getElementById('playBtn');
-        const pauseBtn = document.getElementById('pauseBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        
-        playBtn.addEventListener('click', () => {
-            backgroundMusic.play();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        });
-        
-        pauseBtn.addEventListener('click', () => {
-            backgroundMusic.pause();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        });
-        
-        volumeSlider.addEventListener('input', () => {
-            backgroundMusic.volume = volumeSlider.value;
-        });
-        
-        // Fungsi tombol game-like
-        function sendHug() {
-            alert("💖 Pelukan virtual telah dikirim ke sahabatmu! 💖");
-            createParticleEffect();
-        }
-        
-        function createMemory() {
-            alert("🌟 Kenangan baru telah dibuat! 🌟");
-        }
-        
-        function shareLove() {
-            alert("✨ Cinta dan apresiasi telah dibagikan! ✨");
-        }
-        
-        // Efek partikel untuk tombol
-        function createParticleEffect() {
-            const particles = 30;
-            const container = document.querySelector('.container');
+        function setupMusicPlayer() {
+            const playBtn = document.getElementById('play-btn');
+            const volumeSlider = document.getElementById('volume-slider');
+            const audio = document.getElementById('bg-music');
             
-            for (let i = 0; i < particles; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'floating-icons';
-                particle.innerHTML = '<i class="fas fa-heart"></i>';
-                particle.style.position = 'absolute';
-                particle.style.top = '50%';
-                particle.style.left = '50%';
-                particle.style.color = getRandomColor();
-                particle.style.fontSize = (Math.random() * 2 + 1) + 'rem';
-                particle.style.animation = 'float 3s ease-in-out forwards';
-                
-                container.appendChild(particle);
-                
-                // Hapus setelah animasi selesai
-                setTimeout(() => {
-                    particle.remove();
-                }, 3000);
-            }
+            // Gunakan musik dari sumber eksternal (YouTube untuk demo)
+            audio.src = "https://youtu.be/QgaTQ5-XfMM?si=ajKaGLqDAWsVO8eF";
+            
+            playBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playBtn.innerHTML = '<i>⏸</i>';
+                } else {
+                    audio.pause();
+                    playBtn.innerHTML = '<i>▶</i>';
+                }
+            });
+            
+            volumeSlider.addEventListener('input', () => {
+                audio.volume = volumeSlider.value;
+            });
         }
         
-        function getRandomColor() {
-            const colors = ['#00d9ff', '#ff00d4', '#00ff95', '#ffcc00', '#ff6b6b'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-        
-        // Mulai animasi setelah halaman dimuat
+        // Inisialisasi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(typeText, 1000);
+            createParticles();
+            typeText();
+            setupMusicPlayer();
             
-            // Putar musik otomatis dengan volume rendah
-            backgroundMusic.volume = 0.5;
-            backgroundMusic.play().catch(e => console.log("Autoplay prevented: ", e));
+            // Animasi elemen saat masuk viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
