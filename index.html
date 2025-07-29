@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Bestfriend Day</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Happy Bestfriend Day! </h1>
+  <p>
+    Terima kasih sudah selalu ada untukku.  
+    Kamu adalah bintang di malamku,  
+    cahaya yang membuat hari-hariku lebih indah.  
+    Semoga kita selalu bersahabat selamanya. 
+  </p>
+
+  <!-- Musik menenangkan -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/05/audio_0e4f06b376.mp3?filename=peaceful-piano-118106.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Efek hati mengambang
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 800);
+
+    // Membuat bintang
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.classList.add('stars');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+      document.body.appendChild(star);
+    }
+
+    // Membuat partikel kunang-kunang
+    for (let i = 0; i < 20; i++) {
+      const firefly = document.createElement('div');
+      firefly.classList.add('firefly');
+      firefly.style.left = Math.random() * 100 + 'vw';
+      firefly.style.top = Math.random() * 100 + 'vh';
+      firefly.style.animationDuration = (Math.random() * 10 + 5) + 's';
+      document.body.appendChild(firefly);
+    }
+  </script>
+
+</body>
+</html>
